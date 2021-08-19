@@ -1,6 +1,8 @@
 def egcd(a, b):
 	if a < b:
-		a, b = b, a
+		u, g, x, y = 1, a, 0, b
+	else:
+		u, g, x, y = 0, b, 1, a
   
   #initializing starting points
   u, g, x, y = 1, a, 0, b 

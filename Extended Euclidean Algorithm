@@ -10,4 +10,10 @@ def egcd(a, b):
 		s = u-q*x
 		u, x = x, s
 		g, y = y, t
+
+# to get u,v so that u is the minimum and greater than 0, below lines can be added.
+##	if u < 0:
+	while u <= 0:
+		u += b//g
+	
 	return (g, u, (g-a*u)//b)

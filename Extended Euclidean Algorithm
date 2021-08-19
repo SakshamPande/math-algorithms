@@ -1,0 +1,15 @@
+def egcd(a, b):
+	if a < b:
+		a, b = b, a
+  
+  #initializing starting points
+  u, g, x, y = 1, a, 0, b 
+	q, t, s = None, None, None
+	
+  while y != 0:
+		q, t = g//y , g%y
+		s = u-q*x
+		u, x = x, s
+		g, y = y, t
+	
+  return (g, u, (g-a*u)//b)

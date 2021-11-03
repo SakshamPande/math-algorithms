@@ -1,0 +1,49 @@
+from Crypto.Util.number import *
+
+def add(P,Q,a,b,p):
+        if P == 0:
+                return (Q[0] % p, Q[1] % p)
+        elif Q == 0:
+                return (P[0] % p, P[1] % p)
+        else:
+                if P[0] == Q[0] and P[1] + Q[1] == 0:
+                        return 0
+                else:
+                        if P != Q:
+                                m = (P[1] - Q[1]) / (P[0] - Q[0])
+                        else:
+                                m = (3*(P[0]**2) + a)/(2*P[1])
+                        x3 = (m**2 - P[0] - Q[0]) % p
+                        y3 = (m*(P[0] - x3) - P[1]) % p
+                        return (x3, y3)
+
+
+def add(P,Q,a,b,p):
+        if P == 0:
+                return (Q[0] % p, Q[1] % p)
+        elif Q == 0:
+                return (P[0] % p, P[1] % p)
+        else:
+                if P[0] == Q[0] and P[1] + Q[1] == 0:
+                        return 0
+                else:
+                        if P != Q:
+                                m = ((P[1] - Q[1]) * inverse((P[0] - Q[0]),p)) % p
+                        else:
+                                m = ((3*(P[0]**2) + a) * inverse((2*P[1]),p)) % p
+                        x3 = (m**2 - P[0] - Q[0]) % p
+                        y3 = (m*(P[0] - x3) - P[1]) % p
+                        return (x3, y3)
+
+		
+
+def scalar_mul(P,n,a,b,p):
+	Q, R = P, 0
+	while n > 0:
+		if n % 2 == 1:
+			R = add(R, Q, a, b, p)
+		Q = add(Q, Q, a, b, p)
+		n = int(n/2)
+	return R
+
+ 

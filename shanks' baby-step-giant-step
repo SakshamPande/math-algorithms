@@ -1,0 +1,17 @@
+from Crypto.Util.number import *
+
+def baby_step_giant_step(g, h, p):
+        for order in range(1, p):
+                if pow(g, order, p) == 1:
+                        break
+        n = int(order ** 0.5) + 1
+        l1, l2 = [], []
+        u = pow(g, order-n, p)
+        for i in range(n+1):
+                l1.append((g**i) % p)
+                l2.append((h*(u**i)) % p)
+        for j in l1:
+                if j in l2:
+                        return l1.index(j) + l2.index(j)*n
+                        
+                        

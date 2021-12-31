@@ -1,0 +1,14 @@
+#sage code
+#v1 , v2 are basis vectors for a lattice
+#the below function solves the Shortest Vector Problem for a 2 dimensional lattice, the returned vector v1 is the SVP solution
+
+def gaussian_lattice_reduction(v1, v2):
+  while True:
+    if v1.dot_product(v1) > v2.dot_product(v2):
+      v1, v2 = v2, v1
+    m = round( (v1.dot_product(v2) / v1.dot_product(v1)) )
+    if m == 0:
+      return v1, v2
+    v2 = v2 - m * v1
+    
+    

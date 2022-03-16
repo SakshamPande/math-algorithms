@@ -1,8 +1,5 @@
 def egcd(a, b):
-	if a < b:
-		u, g, x, y = 1, a, 0, b
-	else:
-		u, g, x, y = 0, b, 1, a
+	u, g, x, y = 0, b, 1, a
 
 	q, t, s = None, None, None
 	while y != 0:
